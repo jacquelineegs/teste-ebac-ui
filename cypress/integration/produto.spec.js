@@ -3,7 +3,7 @@
 describe('Funcionalidade Página de Produtos', () => {
 
     beforeEach(() => {
-        cy.visit('http://lojaebac.ebaconline.art.br/produtos/')
+        cy.visit('produtos')
     });
 
     it('Deve selecionar um produto da lista', () => {
@@ -16,7 +16,7 @@ describe('Funcionalidade Página de Produtos', () => {
 
     });
 
-    it.only('Deve selecionar um produto ao carrinho', () => {
+    it('Deve selecionar um produto ao carrinho', () => {
         var quantidade = 10
 
         cy.get('.product-block')
@@ -28,6 +28,16 @@ describe('Funcionalidade Página de Produtos', () => {
 
         cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidade)
         cy.get('.woocommerce-message').should('contain', quantidade + ' × “Aether Gym Pant” foram adicionados no seu carrinho.')
+    });
+
+    it('Deve adicionar produtos ao carrinho - Usando comandos customizados', () => {
+        cy.addProdutos('Aether Gym Pant', '36', 'Brown', 5)
+
+    });
+
+    it('Deve adicionar produtos ao carrinho - Usando comandos customizados', () => {
+        cy.addProdutos('Aether Gym Pant', '32', 'Green', 1)
+
     });
 
 });
